@@ -1,0 +1,76 @@
+using System;
+
+namespace ConsoleApp20;
+
+class Program
+{
+    static void Main()
+    {
+        
+        CharacterCollection Party = new CharacterCollection();
+
+       
+        Party.Add(new Personag("Барбі", "Виживальник", 70));
+        Party.Add(new Personag("Іона", "Виживальник", 8));
+
+        
+        Console.WriteLine("Список персонажів:");
+        foreach (Personag p in Party)
+        {
+            Console.WriteLine($"- {p.Name} (Роль: {p.Role}, Здоров'я: {p.PercentOfHealth}%)");
+        }
+        
+        //-----------------------------------------------------
+        
+        EventCollection EventLog = new EventCollection();
+
+       
+        EventLog.Add(new Event("втратив здоровья", 1, "Зустріч"));
+        EventLog.Add(new Event("отримав гроші", 2, "Бійка"));
+
+        
+        Console.WriteLine("Список персонажів:");
+        foreach (Event p in EventLog)
+        {
+            Console.WriteLine($"Він/вона- {p.Description} під час події: {p.Type}(подія №{p.Number})");
+        }
+
+        Console.WriteLine();
+        Console.WriteLine("Персонажі зі здоров'ям більше 50% : ");
+        foreach (Personag p in Party.GetHP())
+        {
+            Console.WriteLine($"- {p.Name} ({p.PercentOfHealth}%)");
+        }
+        
+        Console.WriteLine();
+        Console.WriteLine("Пройденя битви : ");
+        foreach (Event e in EventLog.GetFiting())
+        {
+            Console.WriteLine($"- {e.Description} ({e.Number})");
+        }
+        
+        Console.WriteLine("Список імен персонажів (Select) :");
+        
+        var namesList = Party.Select(p => p.Name).ToList();
+
+
+        foreach (string name in namesList)
+        {
+            Console.WriteLine(name);
+        }
+        
+        Console.WriteLine("Групування за класом/роллю (GroupBy) :");
+        
+        var groupedByRole = Party.GroupBy(p => p.Role);
+        
+        foreach (var group in groupedByRole)
+        {
+            Console.WriteLine($"Клас: {group.Key}");
+            
+            foreach (Personag p in group)
+            {
+                Console.WriteLine($" - {p.Name}");
+            }
+        }
+    }
+}
