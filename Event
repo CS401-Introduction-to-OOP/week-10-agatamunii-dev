@@ -1,0 +1,17 @@
+using System.Linq;
+
+namespace ConsoleApp20;
+
+public class Event
+{
+    public string Description { get; set; }
+    public int Number { get; set; }
+    public string Type { get; set; }
+
+    public Event(string description, int number, string type)
+    {
+        Description = description;
+        Number = number;
+        Type = type;
+    }
+}
