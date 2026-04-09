@@ -1,0 +1,23 @@
+using System.Linq;
+
+namespace ConsoleApp20;
+
+public class Personag
+{
+    public string Name { get; }
+    public string Role { get; } 
+    public int Level { get; set; }
+    public int PercentOfHealth { get; set; } 
+    public int Gold { get; set; }
+    public string State { get; set; } 
+    
+    public Personag(string name, string role, int percentOfHealth)
+    {
+        Name = name;
+        Role = role;
+        Level = 1;
+        PercentOfHealth = percentOfHealth;
+        Gold = 0;
+        State = "Is okey";
+    }
+}
