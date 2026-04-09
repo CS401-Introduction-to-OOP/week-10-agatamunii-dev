@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ConsoleApp20;
+
+public class EventCollection : IEnumerable<Event>
+{
+
+    private List<Event> _events = new List<Event>();
+
+
+    public void Add(Event @event)
+    {
+        _events.Add(@event);
+    }
+
+
+    public IEnumerator<Event> GetEnumerator()
+    {
+        for (int i = 0; i < _events.Count; i++)
+        {
+            yield return _events[i];
+        }
+    }
+    
+    public IEnumerable<Event> GetFiting()
+    {
+        for (int i = 0; i < _events.Count; i++)
+        {
+            if (_events[i].Type == "Бійка")
+            {
+                yield return _events[i];
+            }
+        }
+    }
+    
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+}
